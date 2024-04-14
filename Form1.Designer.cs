@@ -43,7 +43,7 @@
             // button1
             // 
             button1.BackColor = SystemColors.GradientInactiveCaption;
-            button1.Location = new Point(830, 12);
+            button1.Location = new Point(806, 22);
             button1.Name = "button1";
             button1.Size = new Size(131, 35);
             button1.TabIndex = 0;
@@ -55,16 +55,17 @@
             // 
             dataGridView1.BackgroundColor = SystemColors.GradientInactiveCaption;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Location = new Point(12, 22);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(774, 245);
+            dataGridView1.Size = new Size(752, 245);
             dataGridView1.TabIndex = 1;
             // 
             // button2
             // 
             button2.BackColor = SystemColors.GradientInactiveCaption;
-            button2.Location = new Point(830, 62);
+            button2.Location = new Point(806, 72);
             button2.Name = "button2";
             button2.Size = new Size(131, 35);
             button2.TabIndex = 2;
@@ -75,7 +76,7 @@
             // button3
             // 
             button3.BackColor = SystemColors.GradientInactiveCaption;
-            button3.Location = new Point(830, 113);
+            button3.Location = new Point(806, 123);
             button3.Name = "button3";
             button3.Size = new Size(131, 35);
             button3.TabIndex = 3;
@@ -86,7 +87,7 @@
             // button4
             // 
             button4.BackColor = SystemColors.GradientInactiveCaption;
-            button4.Location = new Point(831, 167);
+            button4.Location = new Point(807, 177);
             button4.Name = "button4";
             button4.Size = new Size(131, 35);
             button4.TabIndex = 4;
@@ -97,7 +98,7 @@
             // button5
             // 
             button5.BackColor = SystemColors.GradientInactiveCaption;
-            button5.Location = new Point(830, 62);
+            button5.Location = new Point(806, 72);
             button5.Name = "button5";
             button5.Size = new Size(131, 35);
             button5.TabIndex = 5;
@@ -108,7 +109,7 @@
             // button6
             // 
             button6.BackColor = SystemColors.GradientInactiveCaption;
-            button6.Location = new Point(830, 113);
+            button6.Location = new Point(807, 123);
             button6.Name = "button6";
             button6.Size = new Size(131, 35);
             button6.TabIndex = 6;
@@ -119,12 +120,13 @@
             // button7
             // 
             button7.BackColor = SystemColors.GradientInactiveCaption;
-            button7.Location = new Point(830, 222);
+            button7.Location = new Point(806, 232);
             button7.Name = "button7";
             button7.Size = new Size(131, 35);
             button7.TabIndex = 7;
             button7.Text = "Информация";
             button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // checkBox1
             // 
@@ -135,13 +137,14 @@
             checkBox1.TabIndex = 8;
             checkBox1.Text = "Показывать информацию при запуске";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged_1;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
-            ClientSize = new Size(974, 309);
+            ClientSize = new Size(966, 309);
             Controls.Add(checkBox1);
             Controls.Add(button7);
             Controls.Add(button6);
@@ -152,7 +155,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Train";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

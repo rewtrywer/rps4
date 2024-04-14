@@ -28,26 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             label1 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(165, 99);
+            label1.Location = new Point(12, 19);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(583, 120);
             label1.TabIndex = 0;
-            label1.Text = "label1";
+            label1.Text = resources.GetString("label1.Text");
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = SystemColors.GradientActiveCaption;
+            ClientSize = new Size(623, 171);
             Controls.Add(label1);
             Name = "Form2";
-            Text = "Form2";
+            Text = "Информация";
+            Load += Form2_Load;
             ResumeLayout(false);
             PerformLayout();
         }

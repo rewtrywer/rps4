@@ -15,58 +15,63 @@ namespace rps4
     {
         public Form1()
         {
+
             InitializeComponent();
 
             dataGridView1.RowsAdded += dataGridView1_RowsAdded;
-            //dataGridView1.ReadOnly = true;
 
             button5.Visible = false;
             button6.Visible = false;
+            if (CheckShowGreeting())
+            {
+                checkBox1.Checked = true;
+                Form2 form2 = new Form2();
+                form2.ShowDialog();
+            }
+            else
+            {
+                checkBox1.Checked = false;
+            }
 
-            //if (CheckShowGreeting())
-            //{
-            //    checkBox1.Checked = true;
-            //    Form2 form2 = new Form2();
-            //    form2.ShowDialog();
-            //}
-            //else
-            //{
-            //    checkBox1.Checked = false;
-            //}
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
         {
             ChangeShowGreeting(checkBox1.Checked);
         }
 
         private static void ChangeShowGreeting(bool isChecked)
         {
-            const string filePath = "ShowGreetingCheck.txt";
-            using StreamWriter writer = new(filePath);
-            if (isChecked)
+            const string filePath = "C:\\Users\\Арина\\Desktop\\сем 4\\rps4\\bin\\Debug\\ShowGreetingCheck.txt";
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine("1");
+                if (isChecked)
+                {
+                    writer.WriteLine("1");
+                }
+                else
+                {
+                    writer.WriteLine("0");
+                }
             }
-            else
-            {
-                writer.WriteLine("0");
-            }
+
         }
 
         private bool CheckShowGreeting()
         {
-            const string filePath = "ShowGreetingCheck.txt";
-            using StreamReader reader = new(filePath);
-            if (reader.ReadLine() == "1")
+            const string filePath = "C:\\Users\\Арина\\Desktop\\сем 4\\rps4\\bin\\Debug\\ShowGreetingCheck.txt";
+            using (StreamReader reader = new StreamReader(filePath))
             {
-                reader.Close();
-                return true;
-            }
-            else
-            {
-                reader.Close();
-                return false;
+                if (reader.ReadLine() == "1")
+                {
+                    reader.Close();
+                    return true;
+                }
+                else
+                {
+                    reader.Close();
+                    return false;
+                }
             }
 
         }
@@ -112,8 +117,8 @@ namespace rps4
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                // Проверяем, если строка не новая и значение во втором столбце изменено
-                if (!row.IsNewRow /*&& row.Cells[1].Value != null && row.Cells[1].Value.ToString() != ""*/)
+                // Проверяем, если строка не новая
+                if (!row.IsNewRow)
                 {
                     int id = Convert.ToInt32(row.Cells[0].Value);
                     string? date = row.Cells[1].Value.ToString();
@@ -129,31 +134,17 @@ namespace rps4
 
             button5.Visible = false;
             button2.Visible = true;
+
+            button1.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
+            button6.Enabled = true;
+            button7.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // add();
-            //foreach (DataGridViewRow row in dataGridView1.Rows)
-            //{
-            //    // Проверяем, если строка не новая и значение во втором столбце изменено
-            //    if (!row.IsNewRow /*&& row.Cells[1].Value != null && row.Cells[1].Value.ToString() != ""*/)
-            //    {
-            //        int id = Convert.ToInt32(row.Cells[0].Value);
-            //        string? date = row.Cells[1].Value.ToString();
-            //        string? time = row.Cells[2].Value.ToString();
-            //        string? travel_time = row.Cells[3].Value.ToString();
-            //        string? departure = row.Cells[4].Value.ToString();
-            //        string? destination = row.Cells[5].Value.ToString();
-
-            //        add(id, date, time, travel_time, departure, destination);
-
-            //    }
-            //}
-
-            // dataGridView1.AllowUserToAddRows = true;
             // Разрешаем пользователю добавлять новые строки
-
             dataGridView1.ReadOnly = false;
             dataGridView1.AllowUserToAddRows = true;
 
@@ -174,12 +165,19 @@ namespace rps4
             button2.Visible = false;
             button5.Visible = true;
 
+            button1.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+
+
         }
 
         private void add(int id, string? date, string? time, string? travel_time, string? departure, string? destination)
         {
             BD db = new BD();
-
+            
             string queryCheckExisting = "SELECT COUNT(*) FROM q WHERE id = @id";
             string queryInsert = "INSERT INTO q (id, date, time, travel_time, departure, destination) VALUES (@id, @date, @time, @travel_time, @departure, @destination)";
 
@@ -212,8 +210,16 @@ namespace rps4
                             }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Error: Date, time, or travel time format is incorrect");
+                    }
                 }
+
+                
             }
+
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -273,12 +279,17 @@ namespace rps4
 
             button6.Visible = false;
             button3.Visible = true;
+
+            button1.Enabled = true;
+            button2.Enabled = true;
+            button4.Enabled = true;
+            button7.Enabled = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             // update();
-            //dataGridView1.ReadOnly = false;
+            dataGridView1.ReadOnly = false;
             dataGridView1.AllowUserToAddRows = false;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -292,6 +303,11 @@ namespace rps4
             }
             button3.Visible = false;
             button6.Visible = true;
+
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button4.Enabled = false;
+            button7.Enabled = false;
         }
 
         private void update()
@@ -328,6 +344,10 @@ namespace rps4
 
                                 updateCommand.ExecuteNonQuery();
                             }
+                            else
+                            {
+                                MessageBox.Show("Error: Date, time, or travel time format is incorrect");
+                            }
                         }
                     }
                 }
@@ -346,6 +366,12 @@ namespace rps4
             return true; // Возвращаем true, если все ячейки заполнены
         }
 
-        
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+        }
+
+      
     }
 }
